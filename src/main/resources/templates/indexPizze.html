@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="~{fragments/Head.html :: head(pageTitle='menu pizze')}"></head>
+</head>
+<body class="vw-100 vh-100">
+<div class="container">
+
+    <div id="carouselExampleCaptions" class="carousel slide mt-5 mb-5 h-50" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <th:block th:each="pizza, iter : ${menu}">
+                <button type="button" data-bs-target="#carouselExampleCaptions" th:data-bs-slide-to="${iter.index}"
+                        th:classappend="${iter.index == 0} ? 'active' : ''"
+                        th:attr="aria-label='Slide ' + ${iter.index + 1}"
+                        aria-current="${iter.index == 0} ? 'true' : 'false'"></button>
+            </th:block>
+        </div>
+        <div class="carousel-inner h-100">
+            <th:block th:each="pizza, iter : ${menu}">
+                <div th:classappend="${iter.index == 0} ? 'carousel-item active' : 'carousel-item'">
+                    <img th:src="${pizza.urlPhoto}" class="d-block w-100 h-100" alt="Pizza Image">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 th:text="${pizza.name}"></h5>
+                        <h5 th:text="${pizza.id}"></h5>
+                        <p th:text="${pizza.description}"></p>
+                        <button type="button" class="btn btn-primary btn-lg" th:href="@{|/pizza/${pizza.id}|}">dettagli
+                        </button>
+
+                    </div>
+                </div>
+            </th:block>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!--        <div class="carousel-item" th:each="pizza : ${menu}">
+                <img th:src="${pizza.urlPhoto}" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3 th:text="${pizza.name}"></h3>
+                    <h5 th:text="${pizza.description}"></h5>
+                    <p th:text="${pizza.description}"></p>
+                </div>
+            </div>-->
+    <!--
+
+        <ul th:each="pizza : ${menu}">
+            <li th:text="${pizza.name}"></li>
+            <li th:text="${pizza.description}"></li>
+            <li th:text="${pizza.urlPhoto}"></li>
+            <li th:text="${pizza.price}"></li>
+        </ul>
+    -->
+
+
+</div>
+
+</body>
+</html>
