@@ -23,8 +23,9 @@
                         <h5 th:text="${pizza.name}"></h5>
                         <h5 th:text="${pizza.id}"></h5>
                         <p th:text="${pizza.description}"></p>
-                        <button type="button" class="btn btn-primary btn-lg" th:href="@{|/pizza/${pizza.id}|}">dettagli
-                        </button>
+                        <a type="button" class="btn btn-primary btn-lg" th:href="@{pizza/{id}(id=${pizza.id})}">
+                            dettagli
+                        </a>
 
                     </div>
                 </div>
@@ -41,23 +42,6 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <!--        <div class="carousel-item" th:each="pizza : ${menu}">
-                <img th:src="${pizza.urlPhoto}" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3 th:text="${pizza.name}"></h3>
-                    <h5 th:text="${pizza.description}"></h5>
-                    <p th:text="${pizza.description}"></p>
-                </div>
-            </div>-->
-    <!--
-
-        <ul th:each="pizza : ${menu}">
-            <li th:text="${pizza.name}"></li>
-            <li th:text="${pizza.description}"></li>
-            <li th:text="${pizza.urlPhoto}"></li>
-            <li th:text="${pizza.price}"></li>
-        </ul>
-    -->
 
 
 </div>

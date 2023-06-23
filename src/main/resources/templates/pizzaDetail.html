@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="~{fragments/Head.html :: head(pageTitle='pizza dettaglio')}"></head>
+</head>
+<body>
+<div class="container">
+    <div th:object="${pizzadettaglio}" class="card" style="width: 18rem;">
+        <img class="card-img-top" th:src="${pizzadettaglio.urlPhoto}" alt="Card image cap">
+
+        <div class="card-body">
+            <!-- <h5 class="card-title" th:text="*{name}"></h5>-->
+            <!--   <p class="card-text" th:text="${pizza.description}"></p>-->
+            <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

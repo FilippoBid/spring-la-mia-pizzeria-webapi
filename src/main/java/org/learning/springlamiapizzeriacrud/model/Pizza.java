@@ -27,14 +27,17 @@ public class Pizza {
     private String urlPhoto;
     private BigDecimal price;
 
+    public Pizza() {
+      
+    }
 
     /*  public Pizza(String name, String description, String urlPhoto, BigDecimal price) {
-          this.name = name;
-          this.description = description;
-          this.urlPhoto = urlPhoto;
-          this.price = price;
-      }
-  */
+              this.name = name;
+              this.description = description;
+              this.urlPhoto = urlPhoto;
+              this.price = price;
+          }
+      */
     public String getName() {
         return name;
     }
