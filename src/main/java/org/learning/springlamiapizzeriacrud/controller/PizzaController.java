@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -37,16 +37,41 @@ public class PizzaController {
         Optional<Pizza> pizzaOptional = pizzaRepository.findById(id);
         if (pizzaOptional.isPresent()) {
             Pizza pizza = pizzaOptional.get();
-            // passa il libro alla view
+
             model.addAttribute("pizzadettaglio", pizza);
             // ritorna il nome del template della view
             return "pizzaDetail.html";
         } else {
             // ritorno un HTTP Status 404 Not Found
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    "Book with id " + id + " not found");
+                    "Pizza with " + id + " not found");
         }
 
 
+    }
+
+    @GetMapping("/create")
+    public String create(Model model) {
+        // aggiungo al model l'attributo book contenente un Book vuoto
+        model.addAttribute("pizza", new Pizza());
+        return "createPizza.html";
+    }
+
+    @PostMapping("/create")
+    public String store(@Validated @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult) {
+
+
+        // verifico se in validazione ci sono stati errori
+        if (bindingResult.hasErrors()) {
+            // ci sono stati errori
+            return "createPizza.html"; // ritorno il template del form ma col pizza
+        }
+
+
+        // il metodo save fa una create sql se l'oggetto con quella PK non esiste, altrimenti fa update
+        pizzaRepository.save(formPizza);
+
+
+        return "redirect:/indexPizze.html";
     }
 }

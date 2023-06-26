@@ -5,7 +5,9 @@
 </head>
 <body class="vw-100 vh-100">
 <div class="container">
-
+    <a class="text-center btn btn-success mx-auto" th:href="@{pizza/create}">
+        Aggiungi pizza
+    </a>
     <div id="carouselExampleCaptions" class="carousel slide mt-5 mb-5 h-50" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <th:block th:each="pizza, iter : ${menu}">
