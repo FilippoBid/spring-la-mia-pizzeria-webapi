@@ -6,6 +6,7 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.List;
 
 
 @Entity
@@ -35,6 +36,19 @@ public class Pizza {
 
     @DecimalMin("0.01")
     private BigDecimal price;
+
+    public List<Offer> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(List<Offer> offers) {
+        this.offers = offers;
+    }
+
+    /*     il riferimento è fatto allinterno del file Offer model e deve avere lo stesso nome dichiarato li */
+    @OneToMany(mappedBy = "pizza", cascade = {CascadeType.REMOVE})
+
+    private List<Offer> offers;
 
 
     public Pizza() {
