@@ -4,49 +4,26 @@
     <head th:replace="~{fragments/Head.html :: head(pageTitle='menu pizze')}"></head>
 </head>
 <body class="vw-100 vh-100">
-<div class="container">
-    <a class="text-center btn btn-success mx-auto" th:href="@{pizza/create}">
+<div class="container text-center">
+    <a class="text-center btn btn-success mt-5" th:href="@{pizza/create}">
         Aggiungi pizza
     </a>
-    <div id="carouselExampleCaptions" class="carousel slide mt-5 mb-5 h-50" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <th:block th:each="pizza, iter : ${menu}">
-                <button type="button" data-bs-target="#carouselExampleCaptions" th:data-bs-slide-to="${iter.index}"
-                        th:classappend="${iter.index == 0} ? 'active' : ''"
-                        th:attr="aria-label='Slide ' + ${iter.index + 1}"
-                        aria-current="${iter.index == 0} ? 'true' : 'false'"></button>
-            </th:block>
-        </div>
-        <div class="carousel-inner h-100">
-            <th:block th:each="pizza, iter : ${menu}">
-                <div th:classappend="${iter.index == 0} ? 'carousel-item active' : 'carousel-item'">
-                    <img th:src="${pizza.urlPhoto}" class="d-block w-100 h-100" alt="Pizza Image">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5 th:text="${pizza.name}"></h5>
-                        <h5 th:text="${pizza.id}"></h5>
-                        <p th:text="${pizza.description}"></p>
-                        <a type="button" class="btn btn-primary btn-lg" th:href="@{pizza/{id}(id=${pizza.id})}">
-                            dettagli
-                        </a>
 
+    <div class="row mt-5">
+        <th:block th:each="pizza, iter : ${menu}">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img th:src="${pizza.urlPhoto}" class="card-img-top" alt="Pizza Image">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${pizza.name}"></h5>
+                        <h5 class="card-text" th:text="${pizza.id}"></h5>
+                        <p class="card-text" th:text="${pizza.description}"></p>
+                        <a class="btn btn-primary" th:href="@{pizza/{id}(id=${pizza.id})}">Dettagli</a>
                     </div>
                 </div>
-            </th:block>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+            </div>
+        </th:block>
     </div>
-
-
 </div>
-
 </body>
 </html>
