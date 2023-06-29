@@ -2,6 +2,11 @@ package org.learning.springlamiapizzeriacrud.model;
 
 import jakarta.persistence.*;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
+
 
 @Entity
 @Table(name = "pizzas")
@@ -19,11 +24,18 @@ public class Pizza {
         this.id = id;
     }
 
+
+    /*@NotBlank(message = "Title must not be null or blank")*/
     @Column(nullable = false)
+    @NotNull
+    @NotBlank(message = "riempi i campi mancanti")
     private String name;
     private String description;
     private String urlPhoto;
-    private Double price;
+
+    @DecimalMin("0.01")
+    private BigDecimal price;
+
 
     public Pizza() {
 
@@ -60,11 +72,11 @@ public class Pizza {
         this.urlPhoto = urlPhoto;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
