@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="~{fragments/Head.html :: head(pageTitle='crea pizza')}"></head>
+</head>
+<body class="container">
+
+<form th:action="@{/offers/create}"
+      th:object="${offer}"
+      method="post"
+      id="offer-form"
+      class="row color-success">
+    <input type="hidden" th:field="*{pizza}">
+    <div class="col-6">
+        <label class="form-label" for="title">title</label>
+        <input class="form-control" type="text" id="title" th:field="*{title}"
+               th:errorClass="is-invalid">
+        <div class="form-text">Title must not be blank</div>
+        <div th:if="${#fields.hasErrors('title')}" class="invalid-feedback">
+            <ul>
+                <li th:each="err : ${#fields.errors('title')}" th:text="${err}"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-6">
+        <label class="form-label" for="startDate">Inizio</label>
+        <input class="form-control" type="date" id="startDate" th:field="*{startDate}"
+               th:errorClass="is-invalid">
+        <div class="form-text">Start Date must not be blank</div>
+        <div th:if="${#fields.hasErrors('startDate')}" class="invalid-feedback">
+            <ul>
+                <li th:each="err : ${#fields.errors('startDate')}" th:text="${err}"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-6">
+        <label class="form-label" for="endDate">Fine</label>
+        <input class="form-control" type="date" id="endDate" th:field="*{endDate}"
+               th:errorClass="is-invalid">
+        <div class="form-text">End Date must not be blank</div>
+        <div th:if="${#fields.hasErrors('endDate')}" class="invalid-feedback">
+            <ul>
+                <li th:each="err : ${#fields.errors('endDate')}" th:text="${err}"></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-success">salva offerta</button>
+    <a class="btn btn-danger" th:href="@{|/pizza/${offer.pizza.id}|}">annulla</a>
+</form>
+</div>
+
+</body>
+</html>

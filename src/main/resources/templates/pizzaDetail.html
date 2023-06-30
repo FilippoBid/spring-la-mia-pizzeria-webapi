@@ -15,6 +15,8 @@
             <a th:href="@{/pizza}" class="btn btn-primary">pizze</a>
         </div>
     </div>
+
+    <a class="btn btn-secondary mt-3" th:href="@{/offers/create(pizzaId=${pizzadettaglio.id})}">crea offerta</a>
     <div th:each="offers: ${pizzadettaglio.offers}" class="dropdown mt-3">
         <button th:text="*{offers.title}" class="btn btn-secondary dropdown-toggle" type="button"
                 data-bs-toggle="dropdown"
@@ -35,8 +37,12 @@
                   <span th:text="*{#temporals.format(offers.endDate, 'dd/MM/yyyy')}"></span>
                 </span>
             </li>
-            <li><span class="dropdown-item">Modifica offerta</span></li>
-            <li><a class="dropdown-item" href="#">Cancella offerta</a></li>
+            <li><a class="dropdown-item" th:href="@{/offers/edit/{id}(id=${offers.id})}">Modifica offerta</a>
+            </li>
+            <form th:action="@{/offers/delete/{id}(id=${offers.id})}" method="post">
+                <input type="hidden" name="_method" value="DELETE"/>
+                <button type="submit" class="dropdown-item">Cancella offerta</button>
+            </form>
 
             <!--<li><a class="dropdown-item" href="#">Something else here</a></li>-->
         </ul>
