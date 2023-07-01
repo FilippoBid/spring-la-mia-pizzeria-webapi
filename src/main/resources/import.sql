@@ -9,3 +9,7 @@ INSERT INTO `offers`(`end_date`, `id`, `pizza_id`, `start_date`, `title`) VALUES
 INSERT INTO `offers`(`end_date`, `id`, `pizza_id`, `start_date`, `title`) VALUES ('2023-12-10','2','4','2023-05-10','super offertuna');
 INSERT INTO `offers`(`end_date`, `id`, `pizza_id`, `start_date`, `title`) VALUES ('2023-10-10','3','5','2023-04-13','offertina');
 INSERT INTO `offers`(`end_date`, `id`, `pizza_id`, `start_date`, `title`) VALUES ('2023-10-10','4','5','2023-04-13','regalato proprio');
+INSERT INTO `ingredients`(`id`, `name`) VALUES ('1','ananas');
+INSERT INTO `ingredients`(`id`, `name`) VALUES ('2','ippopotamo');
+INSERT INTO `ingredients`(`id`, `name`) VALUES ('3','fegato');
+INSERT INTO `ingredients`(`id`, `name`) VALUES ('4','componenti esotiche');

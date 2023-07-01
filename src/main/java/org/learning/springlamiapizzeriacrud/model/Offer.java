@@ -2,6 +2,7 @@ package org.learning.springlamiapizzeriacrud.model;
 
 import jakarta.persistence.*;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -13,6 +14,7 @@ public class Offer {
     private Integer id;
 
     @NotNull
+    @NotBlank(message = "riempi i campi mancanti")
     private LocalDate startDate;
     private LocalDate endDate;
     private String title;

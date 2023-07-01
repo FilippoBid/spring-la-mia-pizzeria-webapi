@@ -42,18 +42,30 @@ public class Pizza {
 
     private List<Offer> offers;
 
+/*
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    @ManyToMany
+    @JoinTable(
+            name = "pizza_ingredient",
+            joinColumns = @JoinColumn(name = "pizza_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id")
+    )
+    private List<Ingredient> ingredients = new ArrayList<>();
+*/
+
 
     public Pizza() {
 
     }
 
-    /*  public Pizza(String name, String description, String urlPhoto, BigDecimal price) {
-              this.name = name;
-              this.description = description;
-              this.urlPhoto = urlPhoto;
-              this.price = price;
-          }
-      */
+
     public String getName() {
         return name;
     }

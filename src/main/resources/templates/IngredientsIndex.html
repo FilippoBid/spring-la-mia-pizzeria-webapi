@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="~{fragments/Head.html :: head(pageTitle='menu pizze')}"></head>
+</head>
+<body class="container">
+
+<div class="list-group">
+    <a th:block th:each="ingredient, iter : ${ingredients}" href="#"
+       class="list-group-item list-group-item-action mb-5"
+       aria-current="true">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1" th:text="*{ingredient.name}"></h5>
+        </div>
+        <div><a class="dropdown-item" th:href="@{/ingredients/edit/{id}(id=${ingredient.id})}">Modifica offerta</a>
+        </div>
+        <form th:action="@{/ingredients/delete/{id}(id=${ingredient.id})}" method="post">
+            <input type="hidden" name="_method" value="DELETE"/>
+            <button type="submit" class="dropdown-item">Cancella ingrediente</button>
+        </form>
+
+        <!--<p class="mb-1">Some placeholder content in a paragraph.</p>-->
+    </a>
+</div>
+</body>
+</html>

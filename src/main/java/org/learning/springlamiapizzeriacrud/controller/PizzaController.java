@@ -61,7 +61,6 @@ public class PizzaController {
     public String store(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult) {
 
 
-        // verifico se in validazione ci sono stati errori
         if (bindingResult.hasErrors()) {
 
             return "/pizza/create";
