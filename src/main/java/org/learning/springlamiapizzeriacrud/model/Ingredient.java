@@ -2,6 +2,10 @@ package org.learning.springlamiapizzeriacrud.model;
 
 import jakarta.persistence.*;
 
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "ingredients")
 public class Ingredient {
@@ -11,7 +15,19 @@ public class Ingredient {
 
 
     @Column(nullable = false)
+    @Size(min = 1, message = "nome troppo corto")
     private String name;
+
+    public List<Pizza> getPizzas() {
+        return pizzas;
+    }
+
+    public void setPizzas(List<Pizza> pizzas) {
+        this.pizzas = pizzas;
+    }
+
+    @ManyToMany(mappedBy = "ingredients")
+    private List<Pizza> pizzas = new ArrayList<>();
 
     public Ingredient() {
     }

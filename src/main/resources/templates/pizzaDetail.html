@@ -13,6 +13,13 @@
             <h5 class="card-title" th:text="${pizzadettaglio.name}"></h5>
             <p class="card-text" th:text="${pizzadettaglio.description}"></p>
             <a th:href="@{/pizza}" class="btn btn-primary">pizze</a>
+            <h5>Ingredienti utilizzati:</h5>
+            <div th:each="ingredient: ${pizzadettaglio.getIngredients}">
+                <span th:text="${ingredient.name}"></span>
+            </div>
+            <div class="alert alert-info" th:unless="${pizzadettaglio.getIngredients.size() > 0}">
+                There are no ingredients
+            </div>
         </div>
     </div>
 
@@ -46,6 +53,7 @@
 
             <!--<li><a class="dropdown-item" href="#">Something else here</a></li>-->
         </ul>
+
     </div>
 
 </div>

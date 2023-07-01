@@ -1,26 +1,55 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <head th:replace="~{fragments/Head.html :: head(pageTitle='menu pizze')}"></head>
+    <head th:replace="~{fragments/Head.html :: head(pageTitle='form ingredienti')}"></head>
 </head>
 <body class="container">
+<h1>Ingredients</h1>
+<hr>
 
-<div class="list-group">
-    <a th:block th:each="ingredient, iter : ${ingredients}" href="#"
-       class="list-group-item list-group-item-action mb-5"
-       aria-current="true">
-        <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1" th:text="*{ingredient.name}"></h5>
+<div class="row">
+    <!-- Lista degli ingredienti -->
+    <div class="col-6">
+        <ul class="list-group" th:if="${ingredients.size() > 0}">
+            <li class="list-group-item d-flex flex-column justify-content-between align-items-center"
+                th:each="ingredient : ${ingredients}"
+                th:object="${ingredient}">
+                <div>
+                    <h4 th:text="*{name}"></h4>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <a th:href="@{/ingredients(edit=${ingredient.id})}" class="btn btn-primary me-1"><i
+                            class="fa-solid fa-pen-to-square"></i>modifica</a>
+                    <form th:action="@{/ingredients/delete/{id}(id=${ingredient.id})}" method="post">
+                        <button class="btn btn-primary" type="submit"><i class="fa-solid fa-trash-can"></i>cancella
+                        </button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+        <div class="alert alert-info" th:unless="${ingredients.size() > 0}">
+            There are no ingredients
         </div>
-        <div><a class="dropdown-item" th:href="@{/ingredients/edit/{id}(id=${ingredient.id})}">Modifica offerta</a>
-        </div>
-        <form th:action="@{/ingredients/delete/{id}(id=${ingredient.id})}" method="post">
-            <input type="hidden" name="_method" value="DELETE"/>
-            <button type="submit" class="dropdown-item">Cancella ingrediente</button>
+    </div>
+    <!-- Form per la creazione/modifica degli ingredienti -->
+    <div class="col-6">
+        <form th:action="@{/ingredients/save}" id="ingredient-form" method="post" th:object="${ingredientObj}">
+            <input type="hidden" th:field="*{id}">
+            <div class="mb-2">
+                <label class="form-label" for="name">Nome ingrediente</label>
+                <input class="form-control" type="text" id="name" th:field="*{name}" th:errorClass="is-invalid">
+                <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-primary" type="submit">Save</button>
+                <button class="btn btn-primary" type="reset">Reset</button>
+            </div>
         </form>
-
-        <!--<p class="mb-1">Some placeholder content in a paragraph.</p>-->
-    </a>
+    </div>
 </div>
 </body>
 </html>

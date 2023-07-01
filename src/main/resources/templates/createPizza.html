@@ -12,10 +12,10 @@
           id="pizza-form"
           class="row color-success">
         <div class="col-6">
-            <label class="form-label" for="name">name</label>
+            <label class="form-label" for="name">Name</label>
             <input class="form-control" type="text" id="name" th:field="*{name}"
                    th:errorClass="is-invalid">
-            <div class="form-text">Title must not be blank</div>
+            <div class="form-text">Name must not be blank</div>
             <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
                 <ul>
                     <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
@@ -23,10 +23,10 @@
             </div>
         </div>
         <div class="col-6">
-            <label class="form-label" for="description">description</label>
+            <label class="form-label" for="description">Description</label>
             <input class="form-control" type="text" id="description" th:field="*{description}"
                    th:errorClass="is-invalid">
-            <div class="form-text">Title must not be blank</div>
+            <div class="form-text">Description must not be blank</div>
             <div th:if="${#fields.hasErrors('description')}" class="invalid-feedback">
                 <ul>
                     <li th:each="err : ${#fields.errors('description')}" th:text="${err}"></li>
@@ -34,10 +34,10 @@
             </div>
         </div>
         <div class="col-6">
-            <label class="form-label" for="urlPhoto">url photo</label>
+            <label class="form-label" for="urlPhoto">URL Photo</label>
             <input class="form-control" type="text" id="urlPhoto" th:field="*{urlPhoto}"
                    th:errorClass="is-invalid">
-            <div class="form-text">Title must not be blank</div>
+            <div class="form-text">URL Photo must not be blank</div>
             <div th:if="${#fields.hasErrors('urlPhoto')}" class="invalid-feedback">
                 <ul>
                     <li th:each="err : ${#fields.errors('urlPhoto')}" th:text="${err}"></li>
@@ -45,8 +45,7 @@
             </div>
         </div>
         <div class="col-6">
-
-            <label class="form-label" for="price">price</label>
+            <label class="form-label" for="price">Price</label>
             <input class="form-control" type="number" id="price" th:field="*{price}"
                    th:errorClass="is-invalid">
             <div th:if="${#fields.hasErrors('price')}" class="invalid-feedback">
@@ -55,8 +54,20 @@
                 </ul>
             </div>
         </div>
+        <div class="col-12">
+            <label class="form-label" for="ingredients">Ingredients</label>
+            <select multiple class="form-control" id="ingredients" th:field="*{ingredients}" th:errorClass="is-invalid">
+                <option th:each="ingredient : ${allIngredients}" th:value="${ingredient.id}"
+                        th:text="${ingredient.name}"></option>
+            </select>
+            <div th:if="${#fields.hasErrors('ingredients')}" class="invalid-feedback">
+                <ul>
+                    <li th:each="err : ${#fields.errors('ingredients')}" th:text="${err}"></li>
+                </ul>
+            </div>
+        </div>
 
-        <button type="submit" class="btn btn-primary">inforna nel menù</button>
+        <button type="submit" class="btn btn-primary">Add to Menu</button>
     </form>
 </div>
 
