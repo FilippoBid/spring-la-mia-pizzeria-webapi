@@ -1,5 +1,6 @@
 package org.learning.springlamiapizzeriacrud.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import javax.validation.constraints.Size;
@@ -26,6 +27,7 @@ public class Ingredient {
         this.pizzas = pizzas;
     }
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "ingredients")
     private List<Pizza> pizzas = new ArrayList<>();
 

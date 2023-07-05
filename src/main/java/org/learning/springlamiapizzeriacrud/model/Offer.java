@@ -1,5 +1,6 @@
 package org.learning.springlamiapizzeriacrud.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import javax.validation.constraints.NotBlank;
@@ -18,6 +19,7 @@ public class Offer {
     private LocalDate startDate;
     private LocalDate endDate;
     private String title;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(nullable = false)
     private Pizza pizza;

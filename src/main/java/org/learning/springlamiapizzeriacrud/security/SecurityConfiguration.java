@@ -50,7 +50,7 @@ public class SecurityConfiguration {
                 .requestMatchers("/pizza/create").hasAuthority("ADMIN")
                 .requestMatchers("/pizza/**").hasAnyAuthority("ADMIN", "USER")
                 .requestMatchers("/offers/**").hasAuthority("ADMIN")
-                .requestMatchers(HttpMethod.POST).hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/pizza/**").hasAuthority("ADMIN")
                 .requestMatchers("/**").permitAll()
                 .and().formLogin()
                 .defaultSuccessUrl("/pizza")
